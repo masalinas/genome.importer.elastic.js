@@ -35,3 +35,7 @@ docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' geno
 Open elasticHQ in browser at http://localhost:5000 and connect to http://172.21.0.2 elasticsearch cluster
 
 ![elasticHQ Dashboard](captures/elasticHQ.png)
+
+# Links
+
+- [Elasticsearh docker documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.5/docker.html)
