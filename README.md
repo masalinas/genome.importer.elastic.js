@@ -8,7 +8,6 @@ Create a genome network in docker
 
 ```
 docker network create genome
-
 ```
 
 Start single node elasticsearch cluster in development mode
