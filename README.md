@@ -28,9 +28,10 @@ docker run -d -p 5000:5000 --name elasticsearch-hq elastichq/elasticsearch-hq
 Recover the elasticsearch cluster node
 ```
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' genome-elastic-db
+
 172.21.0.2
 ```
 
-Open elasticHQ in browset and conenct to http://172.21.0.2
+Open elasticHQ in browser at http://localhost:5000 and connect to http://172.21.0.2 elasticsearch cluster
 
 ![elasticHQ Dashboard](captures/elasticHQ.png)
