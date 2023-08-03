@@ -22,7 +22,6 @@ Start elasticHQ to manage the cluster
 docker run -d -p 5000:5000 --name elasticsearch-hq elastichq/elasticsearch-hq
 ```
 
-Connect to Elastic search
 
 # Connect to Elasticsearch
 
