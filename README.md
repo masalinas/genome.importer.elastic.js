@@ -39,3 +39,18 @@ Open elasticHQ in browser at http://localhost:5000 and connect to http://172.21.
 # Links
 
 - [Elasticsearh docker documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.5/docker.html)
+
+# Dataset
+We must download The Cancer Genome Atlas (TCGA) Dataset locally in the default folder called downloaded_data, previous to import in mongoDB
+
+# Execution
+Execute this command to import the dataset in mongoDB:
+
+```
+npm install
+
+node --max_old_space_size=8048 app.js
+```
+
+genome-db database:
+
