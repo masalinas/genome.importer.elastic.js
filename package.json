@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "@elastic/elasticsearch": "^7.17.0",
+    "config": "^3.3.9"
+  }
+}
