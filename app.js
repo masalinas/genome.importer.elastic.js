@@ -37,7 +37,7 @@ async function index(dataset) {
       }
     });
 
-    console.error(erroredDocuments);
+    console.log(erroredDocuments);
   }
   
   return body;
