@@ -9,8 +9,10 @@ const client = new Client({node: 'http://localhost:9200'});
 
 // callback API
 async function index(dataset) {
+  // parse dataset to be indexed
   const body = dataset.flatMap(doc => [{ index: { _index: 'dataset' } }, doc]);
 
+  // index dataset
   const { body: bulkResponse } = await client.bulk({ refresh: true, body });
 
   if (bulkResponse.errors) {
@@ -35,32 +37,11 @@ async function index(dataset) {
       }
     });
 
-    console.log(erroredDocuments);
+    console.error(erroredDocuments);
   }
   
   return body;
 }
-
-// STEP-001: get all dataset samples files
-fs.readdir(PATH_DATA, function (err, files) {
-  if (err) {
-    return console.log('Unable to scan directory: ' + err);
-  } 
-  
-  getFiles(files).then(() => {
-    //mongoose.connection.close(); 
-
-    console.log('Import finalized');    
-  });    
-})
-
-const getFiles = async (files) => {
-  for (const file of files) {
-    const result = await parser(file);
-
-    console.log(result);    
-  };
-};
 
 const parser = (file) => {
   return new Promise((resolve, reject) => {
@@ -120,15 +101,34 @@ const parser = (file) => {
           // STEP-005: save dataset in database 
           index(dataset)
             .then(result => {
-              resolve("Dataset for file " + file + " inserted");
+              resolve("Dataset for file " + file + " indexed");
             })
             .catch(error => {
               reject("Dataset for file " + file + " with error: " + error);  
             })
             .finally(() => {
-              console.log("Elastic query done ...");
+              console.log("Process next dataset ...");
             });
         }                                         
       });  
-    });
+  });
 }
+
+const getFiles = async (files) => {
+  for (const file of files) {
+    const result = await parser(file);
+
+    console.log(result);    
+  };
+};
+
+fs.readdir(PATH_DATA, function (err, files) {
+  if (err) {
+    return console.log('Unable to scan directory: ' + err);
+  } 
+  
+  // STEP-001: get all dataset samples files
+  getFiles(files).then(() => {
+    console.log('Import finalized');    
+  });    
+})
